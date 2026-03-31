@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './index.css';
 
 function App() {
+    const [menuOpen, setMenuOpen] = useState(false);
     useEffect(() => {
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
@@ -96,11 +97,18 @@ function App() {
             {/* NAVBAR */}
             <nav id="navbar">
                 <div className="nav-logo">Rent<span>Nearby</span></div>
-                <div className="nav-links" id="navLinks">
-                    <a href="#how">How it works</a>
-                    <a href="#categories">Browse</a>
-                    <a href="#trust">Why us</a>
-                    <a href="#" className="btn-nav">Get Started →</a>
+                <button
+                    className={`nav-toggle${menuOpen ? ' open' : ''}`}
+                    onClick={() => setMenuOpen(o => !o)}
+                    aria-label="Toggle navigation"
+                >
+                    <span></span><span></span><span></span>
+                </button>
+                <div className={`nav-links${menuOpen ? ' open' : ''}`} id="navLinks">
+                    <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
+                    <a href="#categories" onClick={() => setMenuOpen(false)}>Browse</a>
+                    <a href="#trust" onClick={() => setMenuOpen(false)}>Why us</a>
+                    <a href="#" className="btn-nav" onClick={() => setMenuOpen(false)}>Get Started →</a>
                 </div>
             </nav>
 
